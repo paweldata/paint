@@ -1,26 +1,28 @@
+package Paint.src;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serializable; 
+import java.io.Serializable;
 
 /**
- * Class is responsible for resize all figures
+ * Class is responsible for moving all figures
  * Override mousePressed and mouseDragged
  */
-public class ResizeAdapter extends MouseAdapter implements Serializable {
+public class MoveAdapter extends MouseAdapter implements Serializable {
 	private static final long serialVersionUID = 1L;
     Surface surface;
 	private int x;
 	private int y;
-	
+
 	/**
 	 * Class constructor
 	 * 
 	 * @param surface main panel
 	 */
-	ResizeAdapter(Surface surface) {
+	MoveAdapter(Surface surface) {
 		this.surface = surface;
 	}
-	
+
 	/**
 	 * Activate when mouse is pressed
 	 * Find a figure which is pressed and set ifActive true for this figure
@@ -40,7 +42,8 @@ public class ResizeAdapter extends MouseAdapter implements Serializable {
 					temp.ifActive = true;
 				else
 					temp.ifActive = false;
-			} else if (surface.FigureList.get(i) instanceof MyEllipse) {
+			}
+			else if (surface.FigureList.get(i) instanceof MyEllipse) {
 				MyEllipse temp = (MyEllipse)surface.FigureList.get(i);
 				
 				if (temp.isHit(x, y))
@@ -50,17 +53,18 @@ public class ResizeAdapter extends MouseAdapter implements Serializable {
 			} else if (surface.FigureList.get(i) instanceof MyPolygon) {
 				MyPolygon temp = (MyPolygon)surface.FigureList.get(i);
 				
-				if (temp.isHit(x, y))
+				if (temp.isHit(x, y)) {
+					System.out.println("OK");
 					temp.ifActive = true;
+				}
 				else
 					temp.ifActive = false;
 			}
 		}
-		surface.repaint();
 	}
-	
+
 	/**
-	 * Resize a figure which mouse is pressed
+	 * Move a figure which mouse is pressed
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -73,8 +77,8 @@ public class ResizeAdapter extends MouseAdapter implements Serializable {
 				
 				if (temp.ifActive && temp.isHit(x, y)) {
 					
-					temp.addWidth(dx);
-					temp.addHeight(dy);
+					temp.addX(dx);
+					temp.addY(dy);
 					surface.repaint();
 				}
 			} else if (surface.FigureList.get(i) instanceof MyEllipse) {
@@ -82,22 +86,23 @@ public class ResizeAdapter extends MouseAdapter implements Serializable {
 				
 				if (temp.ifActive && temp.isHit(x, y)) {
 					
-					temp.addWidth(dx);
-					temp.addHeight(dy);
+					temp.addX(dx);
+					temp.addY(dy);
 					surface.repaint();
 				}
 			} else if (surface.FigureList.get(i) instanceof MyPolygon) {
 				MyPolygon temp = (MyPolygon)surface.FigureList.get(i);
 				
-				if (temp.ifActive && temp.isHit(x, y)) {
+					if (temp.ifActive && temp.isHit(x, y)) {
 					
-					temp.changeSize(dx, dy);
+					temp.addX(dx);
+					temp.addY(dy);
 					surface.repaint();
 				}
 			}
 		}
-		
+
 		x += dx;
-		y += dy;
+		y += dy;            
 	}
 }

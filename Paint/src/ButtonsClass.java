@@ -1,3 +1,5 @@
+package Paint.src;
+
 import static javax.swing.JColorChooser.showDialog;
 
 import java.awt.Button;

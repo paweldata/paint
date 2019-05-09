@@ -1,3 +1,5 @@
+package Paint.src;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.geom.Point2D;

@@ -1,3 +1,5 @@
+package Paint.src;
+
 import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

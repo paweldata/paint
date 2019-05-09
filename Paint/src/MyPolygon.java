@@ -1,3 +1,5 @@
+package Paint.src;
+
 import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.event.MouseAdapter;

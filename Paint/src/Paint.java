@@ -1,3 +1,5 @@
+package Paint.src;
+
 /**
  * @author Paweł Data
  * It's a simple graphics editor

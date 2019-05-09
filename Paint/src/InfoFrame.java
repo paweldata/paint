@@ -1,3 +1,5 @@
+package Paint.src;
+
 import java.io.Serializable;
 
 import javax.swing.JFrame;

@@ -1,15 +1,17 @@
+package Paint.src;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 import javax.swing.JFrame;
 
 /**
- * Here are all info about ellipse
+ * Here is all info about rectangle
  */
-public class MyEllipse extends Ellipse2D.Float implements Serializable {
+public class MyRectangle extends Rectangle2D.Float implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public boolean ifActive;
 	Color color;
@@ -19,11 +21,11 @@ public class MyEllipse extends Ellipse2D.Float implements Serializable {
 	 * 
 	 * @param x x coordinate of upper left corner
 	 * @param y	y coordinate of upper left corner
-	 * @param width widht of new ellpise
-	 * @param height height of new ellipse
+	 * @param width widht of new rectangle
+	 * @param height height of new rectangle
 	 */
-	public MyEllipse(float x, float y, float width, float height) {
-		setFrame(x, y, width, height);
+	public MyRectangle(float x, float y, float width, float height) {
+		setRect(x, y, width, height);
 		color = Color.BLACK;
 		
 		ifActive = true;
@@ -34,11 +36,12 @@ public class MyEllipse extends Ellipse2D.Float implements Serializable {
 	 * 
 	 * @param x x coordinate of cursor
 	 * @param y y coordinate of cursor
-	 * @return true if mouse pressed on ellipse; false otherwise
+	 * @return true if mouse pressed on rectangle; false otherwise
 	 */
 	public boolean isHit(float x, float y) {
 		return getBounds2D().contains(x, y);
 	}
+
 
 	/**
 	 * Change x coordinate of upper left corner
@@ -59,7 +62,7 @@ public class MyEllipse extends Ellipse2D.Float implements Serializable {
 	}
 
 	/**
-	 * Add width of ellipse
+	 * Add width of rectangle
 	 * 
 	 * @param w added length
 	 */
@@ -68,7 +71,7 @@ public class MyEllipse extends Ellipse2D.Float implements Serializable {
 	}
 
 	/**
-	 * Add height of ellipse
+	 * Add height of rectangle
 	 * 
 	 * @param h added length
 	 */
@@ -78,30 +81,30 @@ public class MyEllipse extends Ellipse2D.Float implements Serializable {
 }
 
 /**
- * Mouse adapter which is responsible for create new ellipse
- * Is added to button "Ellipse"
+ * Mouse adapter which is responsible for create new rectangle
+ * Is added to button "Rectangle"
  */
-class MyEllipseCreateAdapter extends MouseAdapter implements Serializable {
+class MyRectangleCreateAdapter extends MouseAdapter implements Serializable {
 	private static final long serialVersionUID = 1L;
 	Surface surface;
 	JFrame frame;
 	private int x;
 	private int y;
-
+	
 	/**
 	 * Class constructor
 	 * 
 	 * @param surface main panel
 	 * @param frame	main frame (paint)
 	 */
-	MyEllipseCreateAdapter(Surface surface, JFrame frame) {
+	MyRectangleCreateAdapter(Surface surface, JFrame frame) {
 		this.surface = surface;
 		this.frame = frame;
 	}
 
 	/**
 	 * Activate when mouse is pressed
-	 * Get coordinate of coursor and create there new ellipse
+	 * Get coordinate of coursor and create there new rectangle
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -126,7 +129,7 @@ class MyEllipseCreateAdapter extends MouseAdapter implements Serializable {
 			}
 		}
 
-		MyEllipse temp = new MyEllipse(x, y, 50, 50);
+		MyRectangle temp = new MyRectangle(x, y, 100, 50);
 		surface.FigureList.add(temp);
 		
 		frame.validate();
