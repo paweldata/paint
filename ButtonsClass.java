@@ -12,14 +12,22 @@ import java.io.Serializable;
 import javax.swing.JColorChooser;
 import javax.swing.JLabel;
 
+/**
+ * Add all buttons to frame in container
+ */
 public class ButtonsClass extends Container implements Serializable {
 	private static final long serialVersionUID = 1L;
 	final static int buttonNumber = 11;
 	MouseAdapter myAdapter;
 
+	/**
+	 * Class constructor
+	 * 
+	 * @param surface main panel
+	 * @param frame main frame (paint)
+	 */
 	ButtonsClass(Surface surface, Paint frame) {
-		// setLayout(new GridLayout(buttonNumber, 1));
-		setLayout(new GridLayout(buttonNumber, 1));
+		setLayout(new GridLayout(buttonNumber * 2, 1));
 
 		Button InfoButton = new Button("Info");
 		InfoButton.addActionListener(new ActionListener() {
@@ -29,6 +37,18 @@ public class ButtonsClass extends Container implements Serializable {
 		});
 		add(InfoButton);
 
+		Button NewButton = new Button("New");
+		NewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				surface.removeMouseMotionListener(myAdapter);
+				surface.removeMouseListener(myAdapter);
+
+				new NewSurface(surface, frame);
+			}
+		});
+		add(NewButton);
+
 		Button SaveButton = new Button("Save");
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -36,7 +56,7 @@ public class ButtonsClass extends Container implements Serializable {
 				surface.removeMouseMotionListener(myAdapter);
 				surface.removeMouseListener(myAdapter);
 
-				new Save(frame);
+				new Save(surface);
 			}
 		});
 		add(SaveButton);
@@ -48,7 +68,7 @@ public class ButtonsClass extends Container implements Serializable {
 				surface.removeMouseMotionListener(myAdapter);
 				surface.removeMouseListener(myAdapter);
 
-				new Open(frame);
+				new Open(surface, frame);
 			}
 		});
 		add(OpenButton);
@@ -171,4 +191,5 @@ public class ButtonsClass extends Container implements Serializable {
 		});
 		add(ColorButton);
 	}
+
 }

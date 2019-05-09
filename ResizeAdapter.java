@@ -1,17 +1,32 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serializable;
+import java.io.Serializable; 
 
+/**
+ * Class is responsible for resize all figures
+ * Override mousePressed and mouseDragged
+ */
 public class ResizeAdapter extends MouseAdapter implements Serializable {
 	private static final long serialVersionUID = 1L;
     Surface surface;
 	private int x;
 	private int y;
 	
+	/**
+	 * Class constructor
+	 * 
+	 * @param surface main panel
+	 */
 	ResizeAdapter(Surface surface) {
 		this.surface = surface;
 	}
 	
+	/**
+	 * Activate when mouse is pressed
+	 * Find a figure which is pressed and set ifActive true for this figure
+	 * When figure is not pressed, set ifActive false
+	 * ifActive is using in function mouseDragged
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		x = e.getX();
@@ -44,6 +59,9 @@ public class ResizeAdapter extends MouseAdapter implements Serializable {
 		surface.repaint();
 	}
 	
+	/**
+	 * Resize a figure which mouse is pressed
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		int dx = e.getX() - x;

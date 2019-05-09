@@ -7,30 +7,48 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Shows info about figure
+ * which is moving or scalling now
+ */
 public class InfoFigurePanel extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
-    JLabel name, x, y, height, width;
 	ArrayList<JLabel> labelList;
 	
+	/**
+	 * Class constructor
+	 * Start, when none figure is active
+	 * (none figure is scalling or moving)
+	 * 
+	 * @param ifCreatePolygon true, when polygon is creating
+	 * When polygon is creating, panel show information about it
+	 * When no, show only header
+	 */
 	InfoFigurePanel(boolean ifCreatePolygon) {
-		setLayout(new GridLayout(15,1));
-		add(new JLabel("Active figure info"));
+		setLayout(new GridLayout(30,1));
+		add(new JLabel("Active figure info    "));
 		
 		if (ifCreatePolygon) {
 			add(new JLabel("Press Right click"));
 			add(new JLabel("to stop creating"));
 			add(new JLabel("polygon"));
-			System.out.println("OKPolygon");
 		}
 		
 		setBackground(Color.GRAY);
 	}
-	
+
+	/**
+	 * Class constructor
+	 * Start, when figure is active
+	 * (is moving or scalling)
+	 * 
+	 * @param figure active figure
+	 */
 	InfoFigurePanel(Object figure) {
-		setLayout(new GridLayout(15,1));
+		setLayout(new GridLayout(30,1));
 		labelList = new ArrayList<JLabel>();
 		
-		labelList.add(new JLabel("Active figure info"));
+		labelList.add(new JLabel("Active figure info    "));
 		
 		if (figure instanceof MyRectangle) {
 			

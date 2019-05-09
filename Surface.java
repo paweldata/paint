@@ -8,13 +8,21 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ * Surface is a main Panel
+ * Here	they are drawn all figures
+ */
 class Surface extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
     ArrayList<Object> FigureList;
 	Paint frame;
 	boolean ifCreatePolygon;
+	ButtonsClass buttons;
 	
-	
+	/**
+	 * Class constructor
+	 * @param frame main frame
+	 */
 	Surface(Paint frame) {
 		FigureList = new ArrayList<Object>();
 		
@@ -23,9 +31,16 @@ class Surface extends JPanel implements Serializable {
 		
 		setLayout(new FlowLayout());
 		
-		frame.add(new ButtonsClass(this, frame), BorderLayout.EAST);
+		buttons = new ButtonsClass(this, frame);
+		frame.add(buttons, BorderLayout.EAST);
+
+		frame.add(new InfoFigurePanel(false), BorderLayout.WEST);
 	} 
 	
+	/**
+	 * paintComponent draw every figures
+	 * turns on automatically
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -75,7 +90,5 @@ class Surface extends JPanel implements Serializable {
 		
 		if (ifNotActive) 
 			frame.add(new InfoFigurePanel(ifCreatePolygon), BorderLayout.WEST);
-		
-		System.out.println("OKComponent");
 	}
 }
